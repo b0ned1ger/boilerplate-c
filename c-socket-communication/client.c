@@ -11,14 +11,14 @@
 
 int main(int argc, char *argv[])
 {
-	int sockfd = 0, n = 0;
+  int sockfd = 0, n = 0;
 	char recvBuff[1024];
 	struct sockaddr_in serv_addr; 
 	
-	if(argc != 2)
+	if (argc != 2)
 	{
-	    printf("\n Usage: %s <ip of server> \n",argv[0]);
-	    return 1;
+    printf("\n Usage: %s <ip of server> \n",argv[0]);
+    return 1;
 	} 
 	
 	memset(recvBuff, '0',sizeof(recvBuff));
