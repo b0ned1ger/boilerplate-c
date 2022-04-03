@@ -1,4 +1,5 @@
-obj-m := hello.o
+obj-m := boilmod.o
+boilmod-objs := hello.o func.o
 
 all:
 	make -C /lib/modules/`uname -r`/build M=$(PWD) modules

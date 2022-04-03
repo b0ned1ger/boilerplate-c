@@ -1,10 +1,12 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
+#include "func.h"
 
 MODULE_LICENSE("abc");
 static int test_hello_init(void)
 {
     printk(KERN_INFO"%s: In init\n", __func__);
+    func();
     return 0;
 }
 
