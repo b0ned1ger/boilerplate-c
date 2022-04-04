@@ -5,10 +5,13 @@
 MODULE_LICENSE("abc");
 
 int stack = 0;
+int param_array[4];
+static int argc_count = 0;
 static int test_arguments(void);
 static void test_hello_dump_stack(void);
 
 module_param(stack, int, S_IRUGO);
+module_param_array(param_array, int, &argc_count,  S_IRUGO);
 
 static int test_hello_init(void)
 {
@@ -20,9 +23,15 @@ static int test_hello_init(void)
 
 static int test_arguments(void)
 {
-	if (stack)
-		test_hello_dump_stack();
-	return 0;
+    int i = 0;
+
+    if (stack)
+        test_hello_dump_stack();
+
+    for (i = 0; i < sizeof(param_array)/sizeof(param_array[i]); i++)
+        printk(KERN_INFO"%d:\t%d\n", i, param_array[i]);
+
+    return 0;
 }
 
 static void test_hello_exit(void)
