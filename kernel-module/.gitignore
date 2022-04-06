@@ -6,6 +6,7 @@
 *.mod.o
 *.mod.o.cmd
 *.o
+*.o.d
 *.o.cmd
 *.symvers
 *.symvers.cmd

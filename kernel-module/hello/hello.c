@@ -1,6 +1,7 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include "func.h"
+#include "hello.h"
 
 MODULE_LICENSE("abc");
 
@@ -16,6 +17,7 @@ module_param_array(param_array, int, &argc_count,  S_IRUGO);
 static int test_hello_init(void)
 {
     test_arguments();
+    print_jiffies();
     printk(KERN_INFO"%s: In init\n", __func__);
     func();
     return 0;
