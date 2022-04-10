@@ -48,10 +48,22 @@ static void get_current_task(void)
 	pr_info("Current process name: %s \n", current->comm);
 }
 
+static void walk_to_init_task(void)
+{
+	struct task_struct *task;
+	unsigned int process_count = 0;
+	pr_info("Take me to the beginning\n");
+	for (task = current; task != &init_task; task=task->parent){
+		pr_info("%d: pid=%d name=%s \n",process_count, task->pid, task->comm);
+		process_count++;
+	}
+}
+
 static int test_hello_init(void)
 {
     list_tasks();
     get_current_task();
+    walk_to_init_task();
     printk(KERN_INFO"%s: In init\n", __func__);
     return 0;
 }
