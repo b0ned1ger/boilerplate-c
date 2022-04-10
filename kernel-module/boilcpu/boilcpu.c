@@ -2,6 +2,7 @@
 #include <linux/module.h>
 #include <linux/sched/signal.h>
 #include <linux/sched.h>
+#include <asm/current.h>
 
 MODULE_LICENSE("abc");
 
@@ -41,10 +42,16 @@ static int list_tasks(void)
 	return 0;
 }
 
+static void get_current_task(void)
+{
+	pr_info("Current process pid: %d \n", current->pid);
+	pr_info("Current process name: %s \n", current->comm);
+}
 
 static int test_hello_init(void)
 {
     list_tasks();
+    get_current_task();
     printk(KERN_INFO"%s: In init\n", __func__);
     return 0;
 }
